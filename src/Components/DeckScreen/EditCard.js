@@ -108,7 +108,7 @@ export const EditCard = () => {
             className="form-control"
           />
         </div>
-        <button className="btn btn-sm btn-primary" type="submit">Submit</button>
+        <button className="btn btn-sm btn-primary" type="submit" onClick={handleSubmit}>Submit</button>
         <button className="btn btn-sm btn-secondary ml-2" type="button" onClick={() => navigate("/")}>
           Cancel
         </button>
