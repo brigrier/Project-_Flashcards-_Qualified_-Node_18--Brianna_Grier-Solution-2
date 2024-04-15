@@ -86,7 +86,7 @@ export const EditCard = () => {
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="front">Front</label>
-          <input
+          <textarea
             type="text"
             id="front"
             value={front}
@@ -98,7 +98,7 @@ export const EditCard = () => {
         </div>
         <div className="form-group">
           <label htmlFor="back">Back</label>
-          <input
+          <textarea
             type="text"
             id="back"
             value={back}
