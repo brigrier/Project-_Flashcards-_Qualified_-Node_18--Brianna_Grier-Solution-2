@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { Link, useParams, useNavigate, NavLink } from "react-router-dom";
 import { readDeck, deleteCard, deleteDeck } from "../../utils/api";
 
 export const DeckView = () => {
@@ -27,21 +27,25 @@ export const DeckView = () => {
   const { cards } = deck;
    const list = Array.isArray(cards)
     ? cards.map((card) => (
+      <div  className="card mb-4">
+        <div className="card-body">
         <div key={card.id}>
-                   <p className="cardFront">Front:<br/> <span>{card.front}</span> </p>
+                   <p className="cardFront" >Front:<br/> <span>{card.front}</span> </p>
         <p className="cardBack">Back: <br/><span>{card.back}</span> </p>
           <Link
             to={`/decks/${deck.id}/cards/${card.id}/edit`}
-            className="editCard"
+            className="editCard btn btn-sm btn-primary card-link"
           >
-            edit
+            Edit
           </Link>
           <button
             onClick={() => deleteThisCard(card.id)}
-            className="deleteCard"
+            className="deleteCard btn btn-sm btn-danger"
           >
             Delete
           </button>
+</div>
+          </div>
         </div>
       ))
     : null;
@@ -71,24 +75,35 @@ export const DeckView = () => {
   }
   return (
     <div>
-      <div className="navbar">
-        <span>
-          <Link to={`/`}>Home</Link> / {deck.name}
-        </span>
+      <div>
+      <nav aria-label="breadcrumb">
+            <ul className="breadcrumb">
+              <li className="breadcrumb-item">
+                <NavLink to="/">Home</NavLink>
+              </li>
+              <li className="breadcrumb-item">
+                <NavLink to={`/decks/${deckId}`}>{deck.name}</NavLink>
+              </li>
+            </ul>
+          </nav>
       </div>
 
       <div style={{ paddingTop: "20px" }}>
         <h3>{deck.name}</h3>
         <p>{deck.description}</p>
-        <Link to={`/decks/${deckId}/edit`}>Edit</Link>
-        <Link to={`/decks/${deckId}/study`}>Study</Link>
-        <Link to={`/decks/${deckId}/cards/new`}>Add Cards</Link>
-        <button onClick={() => deleteEntireDeck(deck.id)}>Delete </button>
+        <Link className="btn btn-sm btn-primary card-link" to={`/decks/${deckId}/edit`}>Edit</Link>
+        <Link className="btn btn-sm btn-primary card-link" to={`/decks/${deckId}/study`}>Study</Link>
+        <Link className="btn btn-sm btn-primary card-link" to={`/decks/${deckId}/cards/new`}>Add Cards</Link>
+        <button className="btn btn-sm btn-danger" onClick={() => deleteEntireDeck(deck.id)}>Delete </button>
       </div>
       <br />
       <div>
-        <h1>{deck && `Cards`}</h1>
+        <h3>{deck && `Cards`}</h3>
+        <div>
+          <div>
         { deck && list}
+        </div>
+        </div>
       </div>
     </div>
   );

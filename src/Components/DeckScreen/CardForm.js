@@ -24,6 +24,7 @@ function CardForm({submitHandler, changeHandler, formData}) {
                         value={formData.front}
                         placeholder={placeHolder.front}
                         required
+                        className="form-control"
                     />
                 </label>
 
@@ -37,10 +38,11 @@ function CardForm({submitHandler, changeHandler, formData}) {
                         value={formData.back}
                         placeholder={placeHolder.back}
                         required
+                        className="form-control"
                     />
                 </label>  
-                <button className="btn btn-secondary" onClick={goToDeck}>Cancel</button>
-                <button className="btn btn-primary">Submit</button>                  
+                <button className="btn btn-sm btn-secondary mr-2" onClick={goToDeck}>Cancel</button>
+                <button className="btn btn-sm btn-primary">Submit</button>                  
             </form>
         )
          }
